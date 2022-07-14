@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { ContaRoutingModule } from './conta-routing.module';
 import { ContaComponent } from './conta.component';
+import { ContaService } from './services/conta.service';
 
 
 
@@ -28,6 +29,9 @@ import { ContaComponent } from './conta.component';
     NgxSpinnerModule,
 
     ContaRoutingModule
+  ],
+  providers: [
+    ContaService
   ]
 })
 export class ContaModule { }

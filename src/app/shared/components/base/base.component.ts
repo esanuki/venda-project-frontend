@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 export abstract class BaseComponent {
 
   form: FormGroup;
+  errors: any[] = [];
 
   validationMessages: ValidationMessages;
   genericValidator: GenericValidator;

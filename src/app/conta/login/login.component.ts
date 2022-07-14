@@ -34,7 +34,7 @@ export class LoginComponent extends BaseComponent implements OnInit, AfterViewIn
   ngOnInit(): void {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required, CustomValidators.rangeLength([6,15])]]
+      senha: ['', [Validators.required, CustomValidators.rangeLength([3,15])]]
     })
   }
 
