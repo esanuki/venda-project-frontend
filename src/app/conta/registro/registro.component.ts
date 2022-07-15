@@ -5,6 +5,8 @@ import { Component, OnInit, AfterViewInit, ViewChildren, ElementRef } from '@ang
 import { FormBuilder, FormControl, FormControlName, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { ContaService } from '../services/conta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -17,9 +19,11 @@ export class RegistroComponent extends BaseComponent implements OnInit, AfterVie
   user: User;
 
   constructor(
-    private fb: FormBuilder,
     spinner: NgxSpinnerService,
-    toastr: ToastrService
+    toastr: ToastrService,
+    private fb: FormBuilder,
+    private service: ContaService,
+    private router: Router
   ) {
     super(spinner, toastr);
     this.mensagensValidacao();
@@ -28,12 +32,12 @@ export class RegistroComponent extends BaseComponent implements OnInit, AfterVie
 
   ngOnInit(): void {
 
-    let senha = new FormControl('',[Validators.required, CustomValidators.rangeLength([3,15])]);
-    let senhaConfirm = new FormControl('', [Validators.required, CustomValidators.rangeLength([3,15]), CustomValidators.equalTo(senha)]);
+    let password = new FormControl('',[Validators.required, CustomValidators.rangeLength([3,15])]);
+    let senhaConfirm = new FormControl('', [Validators.required, CustomValidators.rangeLength([3,15]), CustomValidators.equalTo(password)]);
 
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: senha,
+      senha: password,
       confirmPassword: senhaConfirm
     });
 
@@ -49,7 +53,7 @@ export class RegistroComponent extends BaseComponent implements OnInit, AfterVie
         required: 'Informe o e-mail',
         email: 'E-mail inválido'
       },
-      password: {
+      senha: {
         required: 'Informe a senha',
         rangeLength: 'A senha deve possuir entre 6 e 15 caracteres'
       },
@@ -66,6 +70,28 @@ export class RegistroComponent extends BaseComponent implements OnInit, AfterVie
   registrar() {
     if (this.form.dirty && this.form.valid){
       this.user = Object.assign({}, this.user, this.form.value);
+
+      this.errors = [];
+
+      this.spinner.show();
+
+      this.service.registrar(this.user)
+        .subscribe(
+          data => {
+            this.spinner.hide();
+            if (data) {
+              this.form.reset();
+              let toast = this.toastr.success('Registro realizado com sucesso!', 'Obrigado por se registrar');
+              if (toast) toast.onHidden.subscribe(() => this.router.navigate(['/conta/login']));
+            } else {
+              this.toastr.error('Ocorreu um erro ao se registrar! Tente de novo mais tarde.', 'Ops');
+            }
+
+        },
+        error => {
+          this.spinner.hide();
+          this.processarFalha(error)
+        });
 
 
     }

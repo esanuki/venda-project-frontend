@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlConta: 'https://localhost:44312/api/login/'
+  urlConta: 'https://localhost:44312/api'
 };
 
 /*

@@ -1,4 +1,8 @@
 <div class="container main-container">
+  <ngx-spinner bdColor="rgba(0,0,0,0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+    <p style="color: white">Aguardando...</p>
+</ngx-spinner>
+
   <h1>Cadastro</h1>
 
   <form [formGroup]="form">
@@ -25,8 +29,8 @@
     <div class="form-group">
       <label class="col-md-2 control-label">Senha</label>
       <div class="col-md-10">
-        <input class="form-control" id="password" type="password" placeholder="Digite a sua senha" formControlName="password">
-        <span class="text-danger" *ngIf="displayMessage.password">
+        <input class="form-control" id="password" type="senha" placeholder="Digite a sua senha" formControlName="senha">
+        <span class="text-danger" *ngIf="displayMessage.senha">
           <p [innerHTML]="displayMessage.password"></p>
         </span>
       </div>

@@ -36,4 +36,11 @@ export abstract class BaseComponent {
     this.displayMessage = this.genericValidator.processarMensagens(this.form);
     this.changesNotSaves = true;
   }
+
+  processarFalha(erro: any){
+    this.errors = erro.errors;
+    if (this.errors === undefined) this.errors = ['Ocorreu um erro catastrofico!'];
+
+    this.toastr.error('Ocorreu um erro!', 'Erro');
+  }
 }
