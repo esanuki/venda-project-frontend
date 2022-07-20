@@ -1,3 +1,5 @@
+import { NavegacaoGuard } from './navegacao/navegacao.guard';
+import { BaseGuard } from './shared/services/base.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,7 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
 
     AppRoutingModule
   ],
-  providers: [],
+  providers: [NavegacaoGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

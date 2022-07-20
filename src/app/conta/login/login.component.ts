@@ -1,13 +1,17 @@
+import { LocalStorageUtil } from './../../shared/utils/local-storage-util';
+import { ContaService } from './../services/conta.service';
+import { User } from './../models/user';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit, ViewChildren, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormControlName, Validators } from '@angular/forms';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 import { CustomValidators } from 'ngx-custom-validators';
 import { utilsBr } from 'js-brasil';
 
 import { BaseComponent } from 'src/app/shared/components/base/base.component';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +23,14 @@ export class LoginComponent extends BaseComponent implements OnInit, AfterViewIn
   @ViewChildren(FormControlName, {read: ElementRef}) formInputElemens: ElementRef[];
 
   errors: any[] = [];
+  user: User;
 
   MASKS = utilsBr.MASKS;
 
   constructor(
     private fb: FormBuilder,
+    private service: ContaService,
+    private router: Router,
     spinner: NgxSpinnerService,
     toastr: ToastrService
   ) {
@@ -43,6 +50,39 @@ export class LoginComponent extends BaseComponent implements OnInit, AfterViewIn
   }
 
   login() {
+    if (this.form.dirty && this.form.valid){
+      this.user = Object.assign({}, this.user, this.form.value);
+
+      this.errors = [];
+
+      this.spinner.show();
+
+      this.service.login(this.user)
+        .subscribe(
+          data => {
+            this.spinner.hide();
+            if (data) {
+              this.form.reset();
+
+              let toast = this.toastr.success('Login realizado com sucesso!', 'Obrigado por se registrar');
+              toast.onHidden = new Observable((observer) => observer.next(data));
+
+              if (toast) toast.onHidden.subscribe((parametro) => {
+                this.localStorageUtil.saveLocalStorage(parametro);
+                this.router.navigate(['/home'])
+              });
+            } else {
+              this.toastr.error('Ocorreu um erro ao se registrar! Tente de novo mais tarde.', 'Ops');
+            }
+
+        },
+        error => {
+          this.spinner.hide();
+          this.processarFalha(error)
+        });
+
+
+    }
   }
 
 

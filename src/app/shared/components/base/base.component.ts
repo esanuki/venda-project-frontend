@@ -4,6 +4,7 @@ import { fromEvent, merge, Observable } from 'rxjs';
 import { DisplayMessage, GenericValidator, ValidationMessages } from './../../validations/generic-form.validation';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { LocalStorageUtil } from '../../utils/local-storage-util';
 
 export abstract class BaseComponent {
 
@@ -15,6 +16,8 @@ export abstract class BaseComponent {
   displayMessage: DisplayMessage = {};
 
   changesNotSaves: boolean;
+
+  localStorageUtil: LocalStorageUtil = new LocalStorageUtil();
 
   constructor(
     protected spinner: NgxSpinnerService,
@@ -38,7 +41,7 @@ export abstract class BaseComponent {
   }
 
   processarFalha(erro: any){
-    this.errors = erro.errors;
+    this.errors = erro.error.errors;
     if (this.errors === undefined) this.errors = ['Ocorreu um erro catastrofico!'];
 
     this.toastr.error('Ocorreu um erro!', 'Erro');

@@ -1,3 +1,4 @@
+import { ContaGuard } from './services/conta.guard';
 import { LoginComponent } from './login/login.component';
 import { ContaComponent } from './conta.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,8 +10,16 @@ export const contaRoutes: Routes = [
     path: '',
     component: ContaComponent,
     children: [
-      {path: 'registro', component: RegistroComponent},
-      {path: 'login', component: LoginComponent}
+      {
+        path: 'registro',
+        component: RegistroComponent,
+        canActivate: [ContaGuard]
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+        canActivate: [ContaGuard]
+      }
     ]
   }
 ]

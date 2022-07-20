@@ -26,4 +26,13 @@ export class ContaService extends BaseService{
         catchError(this.serviceError)
       );
   }
+
+  login(user: User) {
+    return this.http
+      .post(this.url + '/login/autenticar', user, this.getHeaderJson())
+      .pipe(
+        map(this.extractData),
+        catchError(this.serviceError)
+      )
+  }
 }
