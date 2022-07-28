@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-md-10">
-      <form novalidate="novalidate" [formGroup]="form">
+      <form novalidate="novalidate" [formGroup]="form" (submit)="cadastrar()">
 
         <div class="form-group">
           <label class="control-label">Nome</label>
@@ -25,8 +25,8 @@
           <label class="control-label">CPF</label>
           <div>
             <input type="text" class="form-control" id="cpf" placeholder="CPF" formControlName="cpf" [textMask]="{mask: MASKS.cpf.textMask}" [ngClass]="{'is-invalid': displayMessage.cpf}">
-            <span class="text-danger" *ngIf="displayMessage.cep">
-              <p [innerHTML]="displayMessage.cep"></p>
+            <span class="text-danger" *ngIf="displayMessage.cpf">
+              <p [innerHTML]="displayMessage.cpf"></p>
             </span>
           </div>
         </div>
@@ -50,6 +50,7 @@
             <span class="text-danger" *ngIf="displayMessage.dataNascimento">
               <p [innerHTML]="displayMessage.dataNascimento"></p>
             </span>
+            <!-- <ngb-datepicker [showWeekNumbers]="true"></ngb-datepicker> -->
           </div>
         </div>
 
@@ -128,8 +129,8 @@
         </div>
         <br>
         <div class="form-group">
-          <input type="submit" class="btn btn-primary" value="Cadastrar">&nbsp;
-          <a class="btn btn-info" href="#">Voltar</a>
+          <input type="submit" class="btn btn-primary" value="Cadastrar" [disabled]="form.invalid">&nbsp;
+          <a class="btn btn-info" [routerLink]="['/cliente/lista-cliente']">Voltar</a>
         </div>
 
       </form>

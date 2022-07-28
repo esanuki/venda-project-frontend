@@ -1,3 +1,7 @@
+import { NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
+import { I18n, DatePickerI18n } from './../../shared/providers/datepicker-i18n';
+import { StringUtil } from './../../shared/utils/string-util';
+import { Cliente } from './../models/cliente';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/shared/components/base/base.component';
@@ -11,7 +15,8 @@ import { utilsBr } from 'js-brasil';
 @Component({
   selector: 'app-novo-cliente',
   templateUrl: './novo-cliente.component.html',
-  styleUrls: ['./novo-cliente.component.css']
+  styleUrls: ['./novo-cliente.component.css'],
+  providers: [I18n, {provide: NgbDatepickerI18n, useClass: DatePickerI18n}]
 })
 export class NovoClienteComponent extends BaseComponent implements OnInit,AfterViewInit {
 
@@ -87,6 +92,21 @@ export class NovoClienteComponent extends BaseComponent implements OnInit,AfterV
     };
 
     super.configMessagesValidation(this.validationMessages);
+  }
+
+  cadastrar() {
+
+    if (this.form.dirty && this.form.valid) {
+      this.spinner.show();
+
+      let cliente = this.form.getRawValue() as Cliente;
+      cliente.cpf = StringUtil.somenteNumeros(cliente.cpf);
+      cliente.endereco.cep = StringUtil.somenteNumeros(cliente.endereco.cep);
+
+      alert(JSON.stringify(cliente));
+
+      this.spinner.hide();
+    }
   }
 
 }
