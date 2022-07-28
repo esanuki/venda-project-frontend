@@ -15,6 +15,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ClienteRoutingModule } from './cliente-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -36,6 +37,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TextMaskModule,
     NgxSpinnerModule,
     NgbModule,
+    SharedModule,
+
     ClienteRoutingModule
   ],
   providers: [
