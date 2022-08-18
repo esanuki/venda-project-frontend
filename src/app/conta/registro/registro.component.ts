@@ -21,11 +21,11 @@ export class RegistroComponent extends BaseComponent implements OnInit, AfterVie
   constructor(
     spinner: NgxSpinnerService,
     toastr: ToastrService,
+    router: Router,
     private fb: FormBuilder,
-    private service: ContaService,
-    private router: Router
+    private service: ContaService
   ) {
-    super(spinner, toastr);
+    super(spinner, toastr, router);
     this.mensagensValidacao();
 
   }

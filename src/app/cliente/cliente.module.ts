@@ -1,3 +1,4 @@
+import { ClienteService } from './services/cliente.service';
 import { MomentDateFormatter } from './../shared/providers/momentdate';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ClienteComponent } from './cliente.component';
@@ -43,6 +44,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   providers: [
     { provide: NgbDateParserFormatter, useClass: MomentDateFormatter },
+    ClienteService
   ],
 })
 export class ClienteModule { }

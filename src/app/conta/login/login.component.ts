@@ -30,11 +30,11 @@ export class LoginComponent extends BaseComponent implements OnInit, AfterViewIn
   constructor(
     private fb: FormBuilder,
     private service: ContaService,
-    private router: Router,
+    router: Router,
     spinner: NgxSpinnerService,
     toastr: ToastrService
   ) {
-    super(spinner, toastr);
+    super(spinner, toastr, router);
     this.mensagensValidacao();
   }
 

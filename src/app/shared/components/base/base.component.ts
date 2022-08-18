@@ -1,3 +1,5 @@
+import { MensagemSucesso } from './../../models/mensagem-sucesso';
+import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { ElementRef } from '@angular/core';
 import { fromEvent, merge, Observable } from 'rxjs';
@@ -21,7 +23,8 @@ export abstract class BaseComponent {
 
   constructor(
     protected spinner: NgxSpinnerService,
-    protected toastr: ToastrService
+    protected toastr: ToastrService,
+    protected router: Router
   ) {}
 
   protected configMessagesValidation(validationMessages: ValidationMessages) {
@@ -45,5 +48,14 @@ export abstract class BaseComponent {
     if (this.errors === undefined) this.errors = ['Ocorreu um erro catastrofico!'];
 
     this.toastr.error('Ocorreu um erro!', 'Erro');
+  }
+
+  processarSucesso(mensagem: MensagemSucesso, navigation: string) {
+    this.form.reset();
+    this.errors = [];
+
+    let toast = this.toastr.success(mensagem.mensagem, mensagem.titulo);
+
+    if (toast) toast.onHidden.subscribe(() => this.router.navigate([navigation]));
   }
 }

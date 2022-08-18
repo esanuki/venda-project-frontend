@@ -11,14 +11,18 @@ export class DateDirective {
   @Input('controlName') controlName : string;
   constructor(private e: ElementRef) { }
 
-  @HostListener('ngModelChange', ['$event']) dateChange(value) {
-    console.log('blur')
-    const year = value.year;
-    const date = value.day;
-    const month = value.month;
+  @HostListener('change', ['$event.target.value']) dateChange(value) {
+    let dataSplit = value.split('/');
+    const year = dataSplit[2];
+    const date = dataSplit[0];
+    const month = dataSplit[1];
     let newDate = new Date(year, month -1, date);
-    let fdate = moment(newDate).format('YYYY-MM-DD');
-    this.form.get(this.controlName).setValue(fdate)
+
+    if (isNaN(newDate.getDate())) {
+      let fdate = moment(newDate).format('YYYY-MM-DD');
+      this.form.get(this.controlName).setValue(fdate);
+    }
+
   }
 
 }
