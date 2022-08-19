@@ -1,1 +1,139 @@
-<p>editar-cliente works!</p>
+<div class="container main-container">
+  <ngx-spinner bdColor="rgba(0,0,0,0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+    <p style="color: white">Aguardando...</p>
+  </ngx-spinner>
+
+  <h1>Novo Cliente</h1>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-10">
+      <form novalidate="novalidate">
+
+        <div class="form-group">
+          <label class="control-label">Nome</label>
+          <div>
+            <input type="text" class="form-control" id="nome" placeholder="Nome">
+            <!-- <span class="text-danger" *ngIf="displayMessage.nome">
+              <p [innerHTML]="displayMessage.nome"></p>
+            </span> -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">CPF</label>
+          <div>
+            <input type="text" class="form-control" id="cpf" placeholder="CPF">
+            <!-- <span class="text-danger" *ngIf="displayMessage.cpf">
+              <p [innerHTML]="displayMessage.cpf"></p>
+            </span> -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">E-mail</label>
+          <div>
+            <input type="text" class="form-control" id="email" placeholder="E-mail">
+            <!-- <span class="text-danger" *ngIf="displayMessage.email">
+              <p [innerHTML]="displayMessage.email"></p>
+            </span> -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Data de nascimento</label>
+          <div class="input-group">
+            <!-- <input class="form-control" placeholder="dd/mm/yyyy"
+                  name="dp" appDate [form]="form" [controlName]="'dataNascimento'" [textMask]="{mask: dateMask}" ngbDatepicker #d="ngbDatepicker" [ngClass]="{'is-invalid': displayMessage.dataNascimento}">
+            <button (click)="d.toggle()" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+            <span class="text-danger" *ngIf="displayMessage.dataNascimento">
+              <p [innerHTML]="displayMessage.dataNascimento"></p>
+            </span> -->
+            <!-- <ngb-datepicker [showWeekNumbers]="true"></ngb-datepicker> -->
+          </div>
+        </div>
+
+        <hr>
+        <h4>Dados de Endereço</h4>
+
+        <div formGroupName="endereco">
+          <div class="form-group">
+            <label class="control-label">Endereço</label>
+            <div>
+              <input type="text" class="form-control" id="logradouro" placeholder="Logradouro">
+              <!-- <span class="text-danger" *ngIf="displayMessage.logradouro">
+                <p [innerHTML]="displayMessage.logradouro"></p>
+              </span> -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">CEP</label>
+            <div>
+              <input type="text" class="form-control" id="cep" placeholder="CEP">
+              <!-- <span class="text-danger" *ngIf="displayMessage.cep">
+                <p [innerHTML]="displayMessage.cep"></p>
+              </span> -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Cidade</label>
+            <div>
+              <input type="text" class="form-control" id="cidade" placeholder="Cidade">
+              <!-- <span class="text-danger" *ngIf="displayMessage.cidade">
+                <p [innerHTML]="displayMessage.cidade"></p>
+              </span> -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Estado</label>
+            <div>
+                <select class="form-control" id="estado">
+                    <option value="">Estado</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+                <!-- <span class="text-danger" *ngIf="displayMessage.estado">
+                  <p [innerHTML]="displayMessage.estado"></p>
+                </span> -->
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="submit" class="btn btn-primary" value="Cadastrar">&nbsp;
+          <a class="btn btn-info" [routerLink]="['/cliente/lista-cliente']">Voltar</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

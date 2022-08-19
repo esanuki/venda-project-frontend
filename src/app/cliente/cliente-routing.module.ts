@@ -1,3 +1,4 @@
+import { ClienteResolve } from './services/cliente.resolve';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
 
@@ -17,11 +18,14 @@ export const clienteRoute: Routes = [
         component: NovoClienteComponent
       },
       {
-        path: 'editar-cliente',
-        component: EditarClienteComponent
+        path: 'editar-cliente/:id',
+        component: EditarClienteComponent,
+        resolve: {
+          cliente: ClienteResolve
+        }
       },
       {
-        path: 'excluir-cliente',
+        path: 'excluir-cliente/:id',
         component: ExcluirClienteComponent
       },
       {

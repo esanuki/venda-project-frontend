@@ -22,4 +22,20 @@ export class ClienteService extends BaseService {
         catchError(this.serviceError)
       );
   }
+
+  buscarTodos() {
+    return this.httpClient.get(this.urlCliente + '/Clientes', this.getTokenHeader())
+      .pipe(
+        map(this.extractData),
+        catchError(this.serviceError)
+      )
+  }
+
+  buscarPorId(id: string) {
+    return this.httpClient.get(`${this.urlCliente}/clientes/${id}`, this.getTokenHeader())
+      .pipe(
+        map(this.extractData),
+        catchError(this.serviceError)
+      );
+  }
 }

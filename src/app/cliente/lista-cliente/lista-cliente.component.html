@@ -1,7 +1,38 @@
 <div class="container main-container">
+  <ngx-spinner bdColor="rgba(0,0,0,0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+    <p style="color: white">Aguardando...</p>
+  </ngx-spinner>
   <h1>Lista de Clientes</h1>
 
   <p>
     <a class="btn btn-info" [routerLink]="['/cliente/novo-cliente']">Novo Cliente</a>
   </p>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>E-mail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>
+          {{ cliente.nome }}
+        </td>
+        <td>
+          {{ cliente.cpf | cpf }}
+        </td>
+        <td>
+          {{ cliente.email }}
+        </td>
+        <td class="text-right">
+          <a class="btn btn-warning" [routerLink]="['/cliente/editar-cliente', cliente.id]"><span class="fa fa-pencil-alt"></span></a>&nbsp;
+          <a class="btn btn-danger" [routerLink]="['/cliente/excluir-cliente', cliente.id]"><span class="fa fa-trash"></span></a>&nbsp;
+          <a class="btn btn-info" [routerLink]="['/cliente/editar-cliente', cliente.id]"><span class="fa fa-search"></span></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -17,6 +17,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ClienteRoutingModule } from './cliente-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
+import { ClienteResolve } from './services/cliente.resolve';
 
 
 
@@ -44,7 +45,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   providers: [
     { provide: NgbDateParserFormatter, useClass: MomentDateFormatter },
-    ClienteService
+    ClienteService,
+    ClienteResolve
   ],
 })
 export class ClienteModule { }
