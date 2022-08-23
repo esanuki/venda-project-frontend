@@ -9,47 +9,47 @@
 
   <div class="row">
     <div class="col-md-10">
-      <form novalidate="novalidate">
+      <form novalidate="novalidate" [formGroup]="form" (submit)="update()">
 
         <div class="form-group">
           <label class="control-label">Nome</label>
           <div>
-            <input type="text" class="form-control" id="nome" placeholder="Nome">
-            <!-- <span class="text-danger" *ngIf="displayMessage.nome">
+            <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome">
+            <span class="text-danger" *ngIf="displayMessage.nome">
               <p [innerHTML]="displayMessage.nome"></p>
-            </span> -->
+            </span>
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label">CPF</label>
           <div>
-            <input type="text" class="form-control" id="cpf" placeholder="CPF">
-            <!-- <span class="text-danger" *ngIf="displayMessage.cpf">
+            <input type="text" class="form-control" id="cpf" placeholder="CPF" formControlName="cpf" [textMask]="{mask: MASKS.cpf.textMask}">
+            <span class="text-danger" *ngIf="displayMessage.cpf">
               <p [innerHTML]="displayMessage.cpf"></p>
-            </span> -->
+            </span>
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label">E-mail</label>
           <div>
-            <input type="text" class="form-control" id="email" placeholder="E-mail">
-            <!-- <span class="text-danger" *ngIf="displayMessage.email">
+            <input type="text" class="form-control" id="email" placeholder="E-mail" formControlName="email">
+            <span class="text-danger" *ngIf="displayMessage.email">
               <p [innerHTML]="displayMessage.email"></p>
-            </span> -->
+            </span>
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label">Data de nascimento</label>
           <div class="input-group">
-            <!-- <input class="form-control" placeholder="dd/mm/yyyy"
+            <input class="form-control" placeholder="dd/mm/yyyy" #dataNasc
                   name="dp" appDate [form]="form" [controlName]="'dataNascimento'" [textMask]="{mask: dateMask}" ngbDatepicker #d="ngbDatepicker" [ngClass]="{'is-invalid': displayMessage.dataNascimento}">
             <button (click)="d.toggle()" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
             <span class="text-danger" *ngIf="displayMessage.dataNascimento">
               <p [innerHTML]="displayMessage.dataNascimento"></p>
-            </span> -->
+            </span>
             <!-- <ngb-datepicker [showWeekNumbers]="true"></ngb-datepicker> -->
           </div>
         </div>
@@ -61,37 +61,37 @@
           <div class="form-group">
             <label class="control-label">Endereço</label>
             <div>
-              <input type="text" class="form-control" id="logradouro" placeholder="Logradouro">
-              <!-- <span class="text-danger" *ngIf="displayMessage.logradouro">
+              <input type="text" class="form-control" id="logradouro" placeholder="Logradouro" formControlName="logradouro">
+              <span class="text-danger" *ngIf="displayMessage.logradouro">
                 <p [innerHTML]="displayMessage.logradouro"></p>
-              </span> -->
+              </span>
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label">CEP</label>
             <div>
-              <input type="text" class="form-control" id="cep" placeholder="CEP">
-              <!-- <span class="text-danger" *ngIf="displayMessage.cep">
+              <input type="text" class="form-control" id="cep" placeholder="CEP" formControlName="cep">
+              <span class="text-danger" *ngIf="displayMessage.cep">
                 <p [innerHTML]="displayMessage.cep"></p>
-              </span> -->
+              </span>
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label">Cidade</label>
             <div>
-              <input type="text" class="form-control" id="cidade" placeholder="Cidade">
-              <!-- <span class="text-danger" *ngIf="displayMessage.cidade">
+              <input type="text" class="form-control" id="cidade" placeholder="Cidade" formControlName="cidade">
+              <span class="text-danger" *ngIf="displayMessage.cidade">
                 <p [innerHTML]="displayMessage.cidade"></p>
-              </span> -->
+              </span>
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label">Estado</label>
             <div>
-                <select class="form-control" id="estado">
+                <select class="form-control" id="estado" formControlName="estado">
                     <option value="">Estado</option>
                     <option value="AC">Acre</option>
                     <option value="AL">Alagoas</option>
@@ -121,9 +121,9 @@
                     <option value="SE">Sergipe</option>
                     <option value="TO">Tocantins</option>
                 </select>
-                <!-- <span class="text-danger" *ngIf="displayMessage.estado">
+                <span class="text-danger" *ngIf="displayMessage.estado">
                   <p [innerHTML]="displayMessage.estado"></p>
-                </span> -->
+                </span>
             </div>
           </div>
         </div>

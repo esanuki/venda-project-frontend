@@ -23,6 +23,14 @@ export class ClienteService extends BaseService {
       );
   }
 
+  update(cliente: Cliente) {
+    return this.httpClient.put(this.urlCliente + '/Clientes', cliente, this.getTokenHeader())
+      .pipe(
+        map(this.extractData),
+        catchError(this.serviceError)
+      );
+  }
+
   buscarTodos() {
     return this.httpClient.get(this.urlCliente + '/Clientes', this.getTokenHeader())
       .pipe(

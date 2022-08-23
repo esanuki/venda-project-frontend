@@ -18,7 +18,7 @@ export class DateDirective {
     const month = dataSplit[1];
     let newDate = new Date(year, month -1, date);
 
-    if (isNaN(newDate.getDate())) {
+    if (!isNaN(newDate.getDate())) {
       let fdate = moment(newDate).format('YYYY-MM-DD');
       this.form.get(this.controlName).setValue(fdate);
     }
