@@ -1,8 +1,10 @@
+import { Cliente } from './../models/cliente';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ClienteService } from './../services/cliente.service';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../models/cliente';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-lista-cliente',
@@ -12,12 +14,16 @@ import { Cliente } from '../models/cliente';
 export class ListaClienteComponent implements OnInit {
 
   clientes: Cliente[];
+  cliente: Cliente;
   erros: string;
+
+  dataNascimento: string;
 
   constructor(
     private toastr: ToastrService,
     private clienteService: ClienteService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private modal: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +39,12 @@ export class ListaClienteComponent implements OnInit {
       });
   }
 
+  open(content, cliente) {
+    this.cliente = cliente;
+    this.dataNascimento = moment(this.cliente.dataNascimento).format('DD/MM/YYYY');
+
+    this.modal.open(content);
+  }
 
 
 }

@@ -26,7 +26,10 @@ export const clienteRoute: Routes = [
       },
       {
         path: 'excluir-cliente/:id',
-        component: ExcluirClienteComponent
+        component: ExcluirClienteComponent,
+        resolve: {
+          cliente: ClienteResolve
+        }
       },
       {
         path: 'lista-cliente',
