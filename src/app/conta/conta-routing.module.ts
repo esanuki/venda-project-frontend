@@ -1,4 +1,5 @@
 import { ContaGuard } from './services/conta.guard';
+import { SharedGuard } from './../shared/services/shared.guard';
 import { LoginComponent } from './login/login.component';
 import { ContaComponent } from './conta.component';
 import { Routes, RouterModule } from '@angular/router';

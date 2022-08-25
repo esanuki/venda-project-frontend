@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Cliente } from './../models/cliente';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ClienteService } from './../services/cliente.service';
@@ -23,11 +24,16 @@ export class ListaClienteComponent implements OnInit {
     private toastr: ToastrService,
     private clienteService: ClienteService,
     private spinner: NgxSpinnerService,
-    private modal: NgbModal
+    private modal: NgbModal,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.spinner.show();
+    this.buscar();
+  }
+
+  buscar() {
     this.clienteService.buscarTodos()
       .subscribe(clientes => {
         this.spinner.hide();
@@ -44,6 +50,29 @@ export class ListaClienteComponent implements OnInit {
     this.dataNascimento = moment(this.cliente.dataNascimento).format('DD/MM/YYYY');
 
     this.modal.open(content);
+  }
+
+  excluirCliente() {
+    this.clienteService.excluir(this.cliente.id)
+      .subscribe(sucess => {
+        const toastr = this.toastr.success('Cliente excluido com sucesso!', 'Sucesso');
+        if (toastr) {
+          toastr.onHidden.subscribe(() => {
+            this.buscar();
+            this.modal.dismissAll();
+          })
+        }
+      },
+      error => {
+        this.erros = error.error.errors;
+        const toastr = this.toastr.error('Ocorreu um erro ao excluir o cliente', 'Alerta');
+        if (toastr) {
+          toastr.onHidden.subscribe(() => {
+            this.modal.dismissAll();
+          })
+        }
+
+      });
   }
 
 

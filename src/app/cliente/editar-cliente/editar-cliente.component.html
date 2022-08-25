@@ -14,7 +14,7 @@
         <div class="form-group">
           <label class="control-label">Nome</label>
           <div>
-            <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome">
+            <input type="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome" [ngClass]="{'is-invalid': displayMessage.nome}">
             <span class="text-danger" *ngIf="displayMessage.nome">
               <p [innerHTML]="displayMessage.nome"></p>
             </span>
@@ -24,7 +24,7 @@
         <div class="form-group">
           <label class="control-label">CPF</label>
           <div>
-            <input type="text" class="form-control" id="cpf" placeholder="CPF" formControlName="cpf" [textMask]="{mask: MASKS.cpf.textMask}">
+            <input type="text" class="form-control" id="cpf" placeholder="CPF" formControlName="cpf" [textMask]="{mask: MASKS.cpf.textMask}" [ngClass]="{'is-invalid': displayMessage.cpf}">
             <span class="text-danger" *ngIf="displayMessage.cpf">
               <p [innerHTML]="displayMessage.cpf"></p>
             </span>
@@ -34,7 +34,7 @@
         <div class="form-group">
           <label class="control-label">E-mail</label>
           <div>
-            <input type="text" class="form-control" id="email" placeholder="E-mail" formControlName="email">
+            <input type="text" class="form-control" id="email" placeholder="E-mail" formControlName="email" [ngClass]="{'is-invalid': displayMessage.email}">
             <span class="text-danger" *ngIf="displayMessage.email">
               <p [innerHTML]="displayMessage.email"></p>
             </span>
@@ -61,7 +61,7 @@
           <div class="form-group">
             <label class="control-label">Endereço</label>
             <div>
-              <input type="text" class="form-control" id="logradouro" placeholder="Logradouro" formControlName="logradouro">
+              <input type="text" class="form-control" id="logradouro" placeholder="Logradouro" formControlName="logradouro" [ngClass]="{'is-invalid': displayMessage.logradouro}">
               <span class="text-danger" *ngIf="displayMessage.logradouro">
                 <p [innerHTML]="displayMessage.logradouro"></p>
               </span>
@@ -71,7 +71,7 @@
           <div class="form-group">
             <label class="control-label">CEP</label>
             <div>
-              <input type="text" class="form-control" id="cep" placeholder="CEP" formControlName="cep">
+              <input type="text" class="form-control" id="cep" placeholder="CEP" formControlName="cep" cep [textMask]="{mask: MASKS.cep.textMask}" [ngClass]="{'is-invalid': displayMessage.cep}">
               <span class="text-danger" *ngIf="displayMessage.cep">
                 <p [innerHTML]="displayMessage.cep"></p>
               </span>
@@ -81,7 +81,7 @@
           <div class="form-group">
             <label class="control-label">Cidade</label>
             <div>
-              <input type="text" class="form-control" id="cidade" placeholder="Cidade" formControlName="cidade">
+              <input type="text" class="form-control" id="cidade" placeholder="Cidade" formControlName="cidade" [ngClass]="{'is-invalid': displayMessage.cidade}">
               <span class="text-danger" *ngIf="displayMessage.cidade">
                 <p [innerHTML]="displayMessage.cidade"></p>
               </span>
@@ -91,7 +91,7 @@
           <div class="form-group">
             <label class="control-label">Estado</label>
             <div>
-                <select class="form-control" id="estado" formControlName="estado">
+                <select class="form-control" id="estado" formControlName="estado" [ngClass]="{'is-invalid': displayMessage.estado}">
                     <option value="">Estado</option>
                     <option value="AC">Acre</option>
                     <option value="AL">Alagoas</option>

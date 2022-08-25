@@ -23,8 +23,16 @@ export class ClienteService extends BaseService {
       );
   }
 
-  update(cliente: Cliente) {
+  atualizar(cliente: Cliente) {
     return this.httpClient.put(this.urlCliente + '/Clientes', cliente, this.getTokenHeader())
+      .pipe(
+        map(this.extractData),
+        catchError(this.serviceError)
+      );
+  }
+
+  excluir(id: string) {
+    return this.httpClient.delete(`${this.urlCliente}/clientes/${id}`, this.getTokenHeader())
       .pipe(
         map(this.extractData),
         catchError(this.serviceError)

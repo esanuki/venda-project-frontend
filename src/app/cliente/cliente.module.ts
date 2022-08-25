@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { ListaClienteComponent } from './lista-cliente/lista-cliente.component';
 import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
 import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
-import { ExcluirClienteComponent } from './excluir-cliente/excluir-cliente.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +25,6 @@ import { ClienteResolve } from './services/cliente.resolve';
     ListaClienteComponent,
     NovoClienteComponent,
     EditarClienteComponent,
-    ExcluirClienteComponent,
     ClienteComponent
   ],
   imports: [

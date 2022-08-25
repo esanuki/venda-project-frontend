@@ -30,7 +30,7 @@
         <td class="text-right">
           <a class="btn btn-warning" [routerLink]="['/cliente/editar-cliente', cliente.id]"><span class="fa fa-pencil-alt"></span></a>&nbsp;
           <a class="btn btn-danger" (click)="open(excluir, cliente)"><span class="fa fa-trash"></span></a>&nbsp;
-          <a class="btn btn-info" [routerLink]="['/cliente/editar-cliente', cliente.id]"><span class="fa fa-search"></span></a>
+          <a class="btn btn-info" (click)="open(detalhes, cliente)"><span class="fa fa-search"></span></a>
         </td>
       </tr>
     </tbody>
@@ -39,9 +39,6 @@
   <ng-template #excluir let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Excluir Cliente</h4>
-      <!-- <button type="button" class="close" aria-label="Close" (click)="d('')">
-        <span aria-hidden="true">&times;</span>
-      </button> -->
     </div>
 
     <div class="modal-body">
@@ -81,9 +78,83 @@
     </div>
 
     <div class="modal-footer">
-      <a class="btn btn-danger" href="javascript:void(0)" (click)="remove()">Excluir</a>&nbsp;
+      <button class="btn btn-danger" (click)="excluirCliente()">Excluir</button>&nbsp;
       <a class="btn btn-info" (click)="d('')">Voltar</a>
     </div>
+
+  </ng-template>
+
+  <ng-template #detalhes let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Detalhes Cliente</h4>
+    </div>
+
+    <div class="modal-body">
+      <div>
+        <dl class="row">
+          <dt class="col-sm-4">
+            <label class="control-label">Nome:</label>
+          </dt>
+          <dd class="col-sm-8">
+            {{ cliente.nome }}
+          </dd>
+
+          <dt class="col-sm-4">
+            <label class="control-label">Cpf:</label>
+          </dt>
+          <dd class="col-sm-8">
+            {{ cliente.cpf | cpf}}
+          </dd>
+
+          <dt class="col-sm-4">
+            <label class="control-label">E-mail:</label>
+          </dt>
+          <dd class="col-sm-8">
+            {{ cliente.email }}
+          </dd>
+
+          <dt class="col-sm-4">
+            <label class="control-label">Data nascimento:</label>
+          </dt>
+          <dd class="col-sm-8">
+            {{ dataNascimento }}
+          </dd>
+        </dl>
+      </div>
+
+      <div>
+        <div style="padding-top: 20px;">
+          <div>
+            <hr>
+            <h4>Endereço</h4>
+          </div>
+
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th>Logradouro</th>
+                <th>Cep</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ cliente.endereco.logradouro }}</td>
+                <td>{{ cliente.endereco.cep | cep }}</td>
+                <td>{{ cliente.endereco.cidade }}</td>
+                <td>{{ cliente.endereco.estado }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <a class="btn btn-info" (click)="d('')">Voltar</a>
+    </div>
+
   </ng-template>
 
 </div>

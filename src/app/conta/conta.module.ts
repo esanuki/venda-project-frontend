@@ -1,3 +1,4 @@
+import { SharedGuard } from './../shared/services/shared.guard';
 import { ContaGuard } from './services/conta.guard';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';

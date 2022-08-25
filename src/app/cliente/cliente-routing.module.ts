@@ -1,8 +1,8 @@
+import { SharedGuard } from './../shared/services/shared.guard';
 import { ClienteResolve } from './services/cliente.resolve';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
 
-import { ExcluirClienteComponent } from './excluir-cliente/excluir-cliente.component';
 import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
 import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
 import { ClienteComponent } from './cliente.component';
@@ -15,25 +15,21 @@ export const clienteRoute: Routes = [
     children: [
       {
         path: 'novo-cliente',
-        component: NovoClienteComponent
+        component: NovoClienteComponent,
+        canActivate: [SharedGuard]
       },
       {
         path: 'editar-cliente/:id',
         component: EditarClienteComponent,
-        resolve: {
-          cliente: ClienteResolve
-        }
-      },
-      {
-        path: 'excluir-cliente/:id',
-        component: ExcluirClienteComponent,
+        canActivate: [SharedGuard],
         resolve: {
           cliente: ClienteResolve
         }
       },
       {
         path: 'lista-cliente',
-        component: ListaClienteComponent
+        component: ListaClienteComponent,
+        canActivate: [SharedGuard]
       }
     ]
   }

@@ -136,7 +136,7 @@ export class EditarClienteComponent extends BaseComponent implements OnInit, Aft
       cliente.cpf = StringUtil.somenteNumeros(cliente.cpf);
       cliente.endereco.cep = StringUtil.somenteNumeros(cliente.endereco.cep);
 
-      this.clienteService.update(cliente)
+      this.clienteService.atualizar(cliente)
         .subscribe(
           sucesso => {
             this.spinner.hide();
